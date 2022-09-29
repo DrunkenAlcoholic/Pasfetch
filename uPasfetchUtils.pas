@@ -24,9 +24,20 @@ begin
   if pos('Pop', strOS) <> 0 then
     // Write the popos logo
     WritePopOS
-  else
+  else if pos('Solus', strOS) <> 0 then
+    // Write the Solus logo
+	WriteSolus
+  else if pos('Arch', strOS) <> 0 then
     // Write the arch logo
-    WriteArch;
+	WriteArch
+  else if pos('Fedora', strOS) <> 0 then
+    // Write the fedora logo
+    WriteFedora
+  else if pos('Crystal', strOS) <> 0 then
+    // Write the fedora logo
+    WriteCrystal
+  else
+    WriteGeneric;
 end;
 
 
@@ -104,7 +115,7 @@ begin
       strShmem := Trim(ExtractString(strTmp, 'Shmem:', 'kB'));
 
       // Process SReclaimable
-      strTmp := slMemInfo.Strings[23];
+      strTmp := slMemInfo.Strings[25];
       strSRclaimable := Trim(ExtractString(strTmp, 'SReclaimable:', 'kB'));
 
       // Calc Mem Total
