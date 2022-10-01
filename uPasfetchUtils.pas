@@ -186,7 +186,13 @@ begin
       for i := 0 to pred(slOS.Count) do
       begin
         strTmp := slOS.Strings[i];
-        if pos('_NAME="', slOS.Strings[i]) > 6 then
+        if pos('NAME=', slOS.Strings[i]) = 1 then
+        begin
+          strOS := strTmp;
+          Delete(strOS, 1, 5);
+          strOS := StripChars(strOS, '"');
+        end;
+        else if pos('_NAME="', slOS.Strings[i]) > 6 then
         begin
           strOS := strTmp;
           Delete(strOS, 1, 13);
