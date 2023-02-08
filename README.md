@@ -14,6 +14,11 @@ use fpc to compile with these optimized option
 ```bash
 $ fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
 ```
+or if you have x86_64 processor then you could reduce the compiled file size by using
+```bash
+$ fpc pasfetch.pas -Px86_64 -Mobjfpc -CX -O3 -XXs -B -v
+```
+
 or run the included bash script to compile and cleanup
 ```bash
 $ ./cleanndup.sh
