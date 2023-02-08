@@ -191,7 +191,7 @@ begin
           strOS := strTmp;
           Delete(strOS, 1, 5);
           strOS := StripChars(strOS, '"');
-        end;
+        end
         else if pos('_NAME="', slOS.Strings[i]) > 6 then
         begin
           strOS := strTmp;
