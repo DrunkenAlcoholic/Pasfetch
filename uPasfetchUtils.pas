@@ -5,7 +5,7 @@ unit uPasfetchUtils;
 interface
 
 uses
-  Classes, SysUtils, uPasfetchAscii;
+  Classes, SysUtils, uPasfetchAscii, Dos;
 
 // Public functions for Pasfetch
 procedure WriteOSLogo(strOS: string);
@@ -14,6 +14,7 @@ function GetRamUsage(): string;
 function GetUptime(): string;
 function GetOS(): string;
 function GetKernel(): string;
+function GetShell(): String;
 
 
 implementation
@@ -83,8 +84,8 @@ end;
 // Get Memory and usage
 function GetRamUsage(): string;
 var
-  strTmp, strMemTotal, strMemFree, strShmem, strBuffers, strCached,
-  strSRclaimable: string;
+  strTmp, strMemTotal, strMemFree, strBuffers, strCached,
+  strSRclaimable: string; //strShmem removed for now
   intMemUsage, intTotalMem: single;
   slMemInfo: TStringList;
 begin
@@ -110,9 +111,9 @@ begin
       strTmp := slMemInfo.Strings[4];
       strCached := Trim(ExtractString(strTmp, 'Cached:', 'kB'));
 
-      // Process Shmem
-      strTmp := slMemInfo.Strings[20];
-      strShmem := Trim(ExtractString(strTmp, 'Shmem:', 'kB'));
+      // Process Shmem ... Removed for now to match htop formnula
+      //strTmp := slMemInfo.Strings[20];
+      //strShmem := Trim(ExtractString(strTmp, 'Shmem:', 'kB'));
 
       // Process SReclaimable
       strTmp := slMemInfo.Strings[25];
@@ -168,6 +169,20 @@ begin
     CloseFile(txtOSRelease);
   end;
   Result := strOSType + '  ' + strOSRelease;
+end;
+
+function GetShell(): String;
+var
+ strTemp: TStringArray;
+ sTmp: String;
+begin
+  
+  sTmp:= GetEnv('SHELL');
+  
+  // Quick and dirty way to parse $SHELL enviroment variable
+  strTemp:= sTmp.Split('/');
+  Result:= strTemp[High(strTemp)];
+  
 end;
 
 
