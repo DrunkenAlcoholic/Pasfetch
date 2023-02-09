@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
 ## compile with fpc + flags
-## fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
 
-## An update to reduce compiled file size
-fpc pasfetch.pas -Px86_64 -Mobjfpc -CX -O3 -XXs -B -v
+# Flag meaning, use fpc -i to get an output of supported flags
+# -P <--- Compiler CPU target e.g x86_64
+# -Cp <--- CPU instruction set e.g -CpCOREAVX2
+# -Cf <--- FPU instruction set e.g -CfAVX2
+# -Op <--- target CPU of optimization e.g -OpCOREAVX2
+# -O3 <--- optimization level( 1-4 )
+# -Mobjfpc <--- FPC Mode with object pascal support
+# -CX <--- create smartlink library
+# -B <--- Build all modules
+# -XXs <--- Strip all symbols and try to smart link units
+# -v <--- verbose
+fpc -Px86_64 -CpCOREAVX2 -CfAVX2 -OpCOREAVX2 -O3 -Mobjfpc -CX -B -XXs -v pasfetch.pas
 
 
 ## Remove object & discriptive files
