@@ -10,9 +10,9 @@ A simple fetch program writen in pascal, a work in progress but initial upload t
 You can compile Pasfetch with the free an open source "Free Pascal Compiler" just search your distro's packages for "fpc" and install, then to compile you do the following
 
 ### Compile
-use fpc to compile with these optimized option
+use fpc to compile with these optimized options for x86_64, see cleanup.sh for more details on flag options
 ```bash
-$ fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
+$ fpc -Px86_64 -CpCOREAVX2 -CfAVX2 -OpCOREAVX2 -O3 -Mobjfpc -CX -B -XXs -v pasfetch.pas
 ```
 or if you have x86_64 processor then you could reduce the compiled file size by using
 ```bash
