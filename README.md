@@ -14,10 +14,6 @@ use fpc to compile with these optimized options for x86_64, see cleanup.sh for m
 ```bash
 $ fpc -Px86_64 -CpCOREAVX2 -CfAVX2 -OpCOREAVX2 -O3 -Mobjfpc -CX -B -XXs -v pasfetch.pas
 ```
-or if you have x86_64 processor then you could reduce the compiled file size by using
-```bash
-$ fpc pasfetch.pas -Px86_64 -Mobjfpc -CX -O3 -XXs -B -v
-```
 
 or run the included bash script to compile and cleanup
 ```bash
