@@ -2,12 +2,12 @@ program pasfetch(input, output, stdErr);
 
 {$MODE OBJFPC}{$H+}{$J-}
 
-uses
-  uPasfetchUtils,
-  uAnsiCrt;
-  
-  
-var
+uses 
+uPasfetchUtils,
+uAnsiCrt;
+
+
+var 
   // A record to store system information
   Info: packed record
     OS: packed array [1..40] of char;
@@ -17,21 +17,21 @@ var
     Uptime: packed array [1..20] of char;
     Memory: packed array [1..20] of char;
 
-    end;
+  end;
 
-i, iBoxPos: Integer;
+  i, iBoxPos: Integer;
 
 begin
   // Get system information and place it in record
   with info do
-  begin
-    OS := GetOS;
-    HostName := GetHostName;
-    Kernel := GetKernel;
-    Shell  := GetShell;
-    Uptime := GetUptime;
-    Memory := GetRamUsage;
-  end;
+    begin
+      OS := GetOS;
+      HostName := GetHostName;
+      Kernel := GetKernel;
+      Shell  := GetShell;
+      Uptime := GetUptime;
+      Memory := GetRamUsage;
+    end;
 
   //Clear the screen
   ClrScr;
@@ -41,7 +41,7 @@ begin
 
 
   // Info Names
-  TextColor(Yellow);
+  write(fcYellow);
   GoToXY(20, 2);
   Write(' OS:');
   GoToXY(20, 3);
@@ -58,7 +58,7 @@ begin
 
 
   // Info
-  TextColor(White);
+  write(fcWhite);
   GoToXY(30, 2);
   writeln(info.OS);
 
@@ -78,20 +78,20 @@ begin
   Write(info.Memory);
 
   // Color blocks 
-  iBoxPos:= 32;
-  
+  iBoxPos := 32;
+
   for i:= 1 to 6 do
-	begin
-		GotoXY(iBoxPos,8);
-		Textcolor(90+i);
-		writeLn('▄');
-		inc(iBoxPos,2);
-	end;
+    begin
+      GotoXY(iBoxPos,8);
+      write(#27'['+ int2Str(90+i)+'m');
+      writeLn('▄');
+      inc(iBoxPos,2);
+    end;
 
   // end
-  Reset;
+  write(tsResetAll);
   GoToXY(1, 11);
-  
+
   // Forkers... Below are some other useful information using enviroment variables if needed
   //WriteLn(GetEnv('HOME'));
   //WriteLn(GetEnv('USER'));

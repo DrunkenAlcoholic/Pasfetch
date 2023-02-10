@@ -21,7 +21,7 @@ implementation
 procedure WriteArch;
 begin
 
-  TextColor(LightBlue);
+  write(fcLightBlue);
   writeLn('       /\\       ');
   writeLn('      /  \\      ');
   writeLn('     /\\  \\     ');
@@ -36,7 +36,7 @@ end;
 procedure WritePopOS;
 begin
 
-  TextColor(Cyan);
+  write(fcLightCyan);
   writeLn(' ______               ');
   writeLn(' \   _ \        __    ');
   writeLn('  \ \ \ \      / /    ');
@@ -52,7 +52,7 @@ end;
 procedure WriteSolus;
 begin
 
-  TextColor(LightBlue);
+  write(fcLightBlue);
   writeLn(' 				');
   writeLn('     /|		');
   writeLn('    / |\\		');
@@ -67,15 +67,15 @@ end;
 procedure WriteFedora;
 begin
 
-  TextColor(White);
+  write(fcWhite);
   writeLn('        _____');
-  writeLn('       /   __)',#27'[94m','\   ');
-  writeLn('       ',#27'[97m','|  /  ',#27'[94m','\ \ ');
-  writeLn('    ___',#27'[97m','|  |',#27'[94m','__/ /  ');
-  writeLn('   / ',#27'[97m','(_    _)',#27'[94m','_/   ');
-  writeLn('  / /  ',#27'[97m','|  |       ');
-  writeLn(#27'[94m','  \ \',#27'[97m','__/  |     ');
-  writeLn(#27'[94m','   \',#27'[97m','(_____/      ');
+  writeLn('       /   __)',fcLightBlue,'\   ');
+  writeLn('       ',fcWhite,'|  /  ',fcLightBlue,'\ \ ');
+  writeLn('    ___',fcWhite,'|  |',fcLightBlue,'__/ /  ');
+  writeLn('   / ',fcLightBlue,'(_    _)',fcLightBlue,'_/   ');
+  writeLn('  / /  ',fcWhite,'|  |       ');
+  writeLn(fcLightBlue,'  \ \',fcWhite,'__/  |     ');
+  writeLn(fcLightBlue,'   \',fcWhite,'(_____/      ');
 
 end;
 
@@ -83,7 +83,7 @@ end;
 procedure WriteCrystal;
 begin
 
-  TextColor(Magenta);
+  write(fcLightMagenta);
   writeLn('           -//.     ');
   writeLn('         -//.       ');
   writeLn('       -//. .       ');
@@ -100,7 +100,7 @@ end;
 procedure WriteGeneric;
 begin
 
-  TextColor(White);
+  write(fcWhite);
   writeLn('       .---.		');
   writeLn('      /     \		');
   writeLn('      \.@-@./		');
