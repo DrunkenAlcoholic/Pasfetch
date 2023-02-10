@@ -84,59 +84,41 @@ end;
 // Get Memory and usage
 function GetRamUsage(): string;
 var
-  strTmp, strMemTotal, strMemFree, strBuffers, strCached,
-  strSRclaimable: string; //strShmem removed for now
-  intMemUsage, intTotalMem: single;
-  slMemInfo: TStringList;
+  iMemTotal, iMemFree, iMemAvailable, iBuffers, iCached, iReclaimable: integer;
+  strMeminfo, strLine: string;
+  txtMeminfo: TextFile;
 begin
   Result := 'Error';
-  // Set the name of the file that will be read
-  slMemInfo := TStringList.Create;
+  strMeminfo:= '';
   try
-    slMemInfo.LoadFromFile('/proc/meminfo');
+    AssignFile(txtMeminfo, '/proc/meminfo');
     try
-      // Process MemTotal
-      strTmp := slMemInfo.Strings[0];
-      strMemTotal := Trim(ExtractString(strTmp, 'MemTotal:', 'kB'));
+      Reset(txtMeminfo);
+    
+      while not eof(txtMeminfo) do
+       begin
+    	  ReadLn(txtMeminfo, strLine);
+        strMeminfo:= strMeminfo + strLine;
+       end;
 
-      // Process MemFree
-      strTmp := slMemInfo.Strings[1];
-      strMemFree := Trim(ExtractString(strTmp, 'MemFree:', 'kB'));
+      SScanf(strMeminfo,'MemTotal: %d kB'+
+   			 'MemFree: %d kB'+
+  			 'MemAvailable: %d kB'+
+  			 'Buffers: %d kB'+
+  			 'Cached: %d kB'+
+  			 'SReclaimable: %d kB',
+  			 [@iMemTotal, @iMemFree, @iMemAvailable, @iBuffers, @iCached, @iReclaimable]);
 
-      // Process Buffers
-      strTmp := slMemInfo.Strings[3];
-      strBuffers := Trim(ExtractString(strTmp, 'Buffers:', 'kB'));
-
-      // Process Cached
-      strTmp := slMemInfo.Strings[4];
-      strCached := Trim(ExtractString(strTmp, 'Cached:', 'kB'));
-
-      // Process Shmem ... Removed for now to match htop formnula
-      //strTmp := slMemInfo.Strings[20];
-      //strShmem := Trim(ExtractString(strTmp, 'Shmem:', 'kB'));
-
-      // Process SReclaimable
-      strTmp := slMemInfo.Strings[25];
-      strSRclaimable := Trim(ExtractString(strTmp, 'SReclaimable:', 'kB'));
-
-      // Calc Mem Total
-      intTotalMem := StrToFloat(strMemTotal);
-
-      // Calc Mem Usage
-      intMemUsage := (intTotalMem - StrToFloat(strMemFree) - StrToFloat(strBuffers) - 
-        StrToFloat(strCached) - StrToFloat(strSRclaimable));
     finally
-      slMemInfo.Free;
+      CloseFile(txtMeminfo);
     end;
-
   except
     on E: EInOutError do
       writeln('File handling error occurred. Details: ', E.Message);
   end;
-
-  Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024), intTotalMem / (1024 * 1024)]);
+  Result := Format('%.2fGB / %.2fGB', [(iMemTotal - iMemFree - iBuffers - iCached - iReclaimable) / (1024 * 1024), 
+                                        iMemTotal / (1024 * 1024)]);
 end;
-
 
 // Get uptime using GetTickCount64
 function GetUptime(): string;
@@ -189,7 +171,7 @@ end;
 // Get OS
 function GetOS(): string;
 var
-  strOS, strTmp: string;
+  strOS: string;
   slOS: TStringList;
   i: integer;
 begin
@@ -200,18 +182,10 @@ begin
     try
       for i := 0 to pred(slOS.Count) do
       begin
-        strTmp := slOS.Strings[i];
-        if pos('NAME=', slOS.Strings[i]) = 1 then
+        if pos('NAME=', slOS.Strings[i]) >= 1 then
         begin
-          strOS := strTmp;
-          Delete(strOS, 1, 5);
-          strOS := StripChars(strOS, '"');
-        end
-        else if pos('_NAME="', slOS.Strings[i]) > 6 then
-        begin
-          strOS := strTmp;
-          Delete(strOS, 1, 13);
-          strOS := StripChars(strOS, '"');
+          strOS := slOS.Strings[i];
+          Delete(strOS, 1, pos('=', strOS));
         end;
       end;
     finally
@@ -221,7 +195,7 @@ begin
     on E: EInOutError do
       writeln('File handling error occurred. Details: ', E.Message);
   end;
-  Result := strOS;
+  Result := StripChars(strOS, '"');
 end;
 
 end.
