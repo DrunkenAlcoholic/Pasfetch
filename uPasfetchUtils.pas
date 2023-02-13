@@ -173,8 +173,8 @@ begin
     slOS.LoadFromFile('/etc/os-release');
     try
       for i := 0 to pred(slOS.Count) do
-        begin
-          if pos('NAME=', slOS.Strings[i]) >= 1 then
+        begin		     // "NAME=" <- Pos 1                "PRETTY_NAME=" <- pos 8
+          if ((pos('NAME=', slOS.Strings[i]) = 1) or (pos('NAME=', slOS.Strings[i]) = 8))  then
             begin
               strOS := slOS.Strings[i];
               Delete(strOS, 1, pos('=', strOS));
