@@ -80,6 +80,7 @@ end;
 function GetRamUsage(): string;
 var 
   iMemTotal, iMemFree, iMemAvailable, iBuffers, iCached, iReclaimable: integer;
+  fltUsed, fltPercent : single;
   strMeminfo, strLine: string;
   txtMeminfo: TextFile;
 begin
@@ -103,6 +104,10 @@ begin
              'Cached: %d kB'+
              'SReclaimable: %d kB',
              [@iMemTotal, @iMemFree, @iMemAvailable, @iBuffers, @iCached, @iReclaimable]);
+             
+      // Calulate used and percentage       
+      fltUsed:= (iMemTotal - iMemFree - iBuffers - iCached - iReclaimable);
+      fltPercent:= ((fltUsed / iMemtotal) * 100);
 
     finally
       CloseFile(txtMeminfo);
@@ -111,8 +116,8 @@ begin
    on E: EInOutError do
     writeln('File handling error occurred. Details: ', E.Message);
   end;
- Result := Format('%.2fGB / %.2fGB', [(iMemTotal - iMemFree - iBuffers - iCached - iReclaimable) / 
-		 (1024 * 1024), iMemTotal / (1024 * 1024)]);
+    // Format and convert the result to GB
+	Result := Format('%.2fGB / %.2fGB (%.2f%%)', [fltUsed / (1024 * 1024), iMemTotal / (1024 * 1024), fltPercent]);
 end;
 
 // Get uptime using GetTickCount64
