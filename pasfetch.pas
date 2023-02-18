@@ -15,7 +15,7 @@ var
     Kernel: packed array [1..40] of char;
     Shell: packed array [1..10] of char;
     Uptime: packed array [1..20] of char;
-    Memory: packed array [1..20] of char;
+    Memory: packed array [1..30] of char;
 
   end;
 
