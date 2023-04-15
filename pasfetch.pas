@@ -40,7 +40,28 @@ begin
   WriteOSLogo(info.OS);
 
 
-  // Info Names
+  // Info Names with icons
+  write(fcLightRed);
+  GoToXY(19, 2);
+  Write(''); // OS
+  write(fcLightGreen);
+  GoToXY(19, 3);
+  Write(''); // HOST
+  write(fcYellow);
+  GoToXY(19, 4);
+  Write(''); // KERNEL
+  write(fcLightBlue);
+  GoToXY(19, 5); 
+  Write('');//SHELL
+  write(fcLightMagenta);
+  GoToXY(19, 6);
+  Write(''); // UPTIME
+  write(fcLightCyan);
+  GoToXY(19, 7);
+  Write(''); // MEMORY
+	//NormVideo;
+		
+ (* // Info Names without icons
   write(fcYellow);
   GoToXY(20, 2);
   Write(' OS:');
@@ -54,33 +75,33 @@ begin
   Write(' UPTIME:');
   GoToXY(20, 7);
   Write(' MEMORY:');
-  //NormVideo;
+  //NormVideo; *)
 
 
   // Info
   write(fcWhite);
-  GoToXY(30, 2);
+  GoToXY(22, 2);
   writeln(info.OS);
 
-  GoToXY(30, 3);
+  GoToXY(22, 3);
   Write(info.HostName);
 
-  GoToXY(30, 4);
+  GoToXY(22, 4);
   Write(info.Kernel);
 
-  GoToXY(30, 5);
+  GoToXY(22, 5);
   Write(info.Shell);
 
-  GoToXY(30, 6);
+  GoToXY(22, 6);
   Write(info.Uptime);
 
-  GoToXY(30, 7);
+  GoToXY(22, 7);
   Write(info.Memory);
 
   // Color blocks 
-  iBoxPos := 32;
-
-  for i:= 1 to 6 do
+  iBoxPos := 26;
+ 
+   for i:= 1 to 6 do
     begin
       GotoXY(iBoxPos,8);
       write(#27'['+ int2Str(90+i)+'m');
@@ -90,7 +111,7 @@ begin
 
   // end
   write(tsResetAll);
-  GoToXY(1, 11);
+  GoToXY(1, 10);
 
   // Forkers... Below are some other useful information using enviroment variables if needed
   //WriteLn(GetEnv('HOME'));
