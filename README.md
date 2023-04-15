@@ -4,10 +4,17 @@ A simple fetch program writen in pascal, a work in progress but initial upload t
 
 
 ## Screenshot
-![alt text](img/Pasfetch.Screenshot.png "Pasfetch")
+### Arch Linux
+![alt text](img/Screenshot_from_2023-04-16_01-25-00.png "Pasfetch")
+
+### Fedora
+![alt text](img/Screenshot_from_2023-04-16_01-50-58.png "Pasfetch")
 
 ## Installation
+install a nerd font for the icons.
+
 You can compile Pasfetch with the free an open source "Free Pascal Compiler" just search your distro's packages for "fpc" and install, then to compile you do the following
+
 
 ### Compile
 use fpc to compile with these optimized options for x86_64, see cleanup.sh for more details on flag options
@@ -36,5 +43,3 @@ Either call the program by using pasfetch in a shell or add to your .bashrc
 ```bash
 $ pasfetch
 ```
-
-
