@@ -47,13 +47,13 @@ end;
 procedure WriteArch;
 begin
 
-  writeLn(tsDefault,fcLightBlue,'       /\\          ',fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
-  writeLn(tsDefault,fcLightBlue,'      /  \\         ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
-  writeLn(tsDefault,fcLightBlue,'     /\\  \\        ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
-  writeLn(tsDefault,fcLightBlue,'    /      \\       ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
-  writeLn(tsDefault,fcLightBlue,'   /   ,,   \\      ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
-  writeLn(tsDefault,fcLightBlue,'  /   |  |  -\\     ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
-  writeLn(tsDefault,fcLightBlue,' /__-''    ''-__\\  '); // Call WriteBoxes to fill this area with coloured boxes
+  writeLn(tsDefault,fcLightBlue,'       /\\         ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcLightBlue,'      /  \\        ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
+  writeLn(tsDefault,fcLightBlue,'     /\\  \\       ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
+  writeLn(tsDefault,fcLightBlue,'    /      \\      ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
+  writeLn(tsDefault,fcLightBlue,'   /   ,,   \\     ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
+  writeLn(tsDefault,fcLightBlue,'  /   |  |  -\\    ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
+  writeLn(tsDefault,fcLightBlue,' /__-''    ''-__\\ '); // Call WriteBoxes to fill this area with coloured boxes
   
   WriteBoxes(26,7,'▄'); //26 spaces across, 7th line down, and block/icon string '▄'
   
@@ -64,7 +64,7 @@ procedure WritePopOS;
 begin
 
   writeLn(tsDefault,fcLightCyan,' ______             ');
-  writeLn(tsDefault,fcLightCyan,' \   _ \        __  ',fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcLightCyan,' \   _ \        __  ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
   writeLn(tsDefault,fcLightCyan,'  \ \ \ \      / /  ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
   writeLn(tsDefault,fcLightCyan,'   \ \_\ \    / /   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
   writeLn(tsDefault,fcLightCyan,'    \  ___\  /_/    ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
@@ -80,7 +80,7 @@ end;
 procedure WriteSolus;
 begin
 
-  writeLn(tsDefault,fcLightBlue,' 				   ',fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcLightBlue,' 				   ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
   writeLn(tsDefault,fcLightBlue,'     /|			   ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
   writeLn(tsDefault,fcLightBlue,'    / |\\		   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
   writeLn(tsDefault,fcLightBlue,'   /  | \\ _		   ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
@@ -97,7 +97,7 @@ procedure WriteFedora;
 begin
 
   writeLn(tsDefault,fcWhite,    '        _____       ');
-  writeLn(tsDefault,fcWhite,    '       /   __)',fcLightBlue,'\    '           ,fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcWhite,    '       /   __)',fcLightBlue,'\    '           ,fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
   writeLn(tsDefault,fcWhite,    '       |  /  ',fcLightBlue,'\ \   '           ,fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
   writeLn(tsDefault,fcLightBlue,'    ___',fcWhite,'|  |',fcLightBlue,'__/ /   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
   writeLn(tsDefault,fcLightBlue,'   / ',fcWhite,'(_    _)',fcLightBlue,'_/    ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
@@ -114,7 +114,7 @@ procedure WriteCrystal;
 begin
 
   writeLn(tsDefault,fcMagenta,'           -//.     ');
-  writeLn(tsDefault,fcMagenta,'         -//.       ',fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcMagenta,'         -//.       ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
   writeLn(tsDefault,fcMagenta,'       -//. .       ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
   writeLn(tsDefault,fcMagenta,'     -//.  ''//-    ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
   writeLn(tsDefault,fcMagenta,'    /+:      :+/    ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
@@ -132,7 +132,7 @@ procedure WriteGeneric;
 begin
 
   writeLn(tsDefault,fcWhite,'       .---.	       ');
-  writeLn(tsDefault,fcWhite,'      /     \	   ',fcLightRed,    '󰹑 ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcWhite,'      /     \	   ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
   writeLn(tsDefault,fcWhite,'      \.@-@./	   ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
   writeLn(tsDefault,fcWhite,'      /`\_/`\	   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
   writeLn(tsDefault,fcWhite,'     //  _  \\	   ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
