@@ -5,12 +5,10 @@ A simple fetch program writen in pascal, a work in progress but initial upload t
 
 ## Screenshot
 ### Arch Linux
-
-![alt text](https://github.com/DrunkenAlcoholic/Pasfetch/blob/main/img/Screenshot%20from%202023-04-16%2001-25-00.png "Pasfetch Arch")
+![alt text](img/Screenshot_from_2023-04-16_01-25-00.png "Pasfetch")
 
 ### Fedora
-
-![alt text](https://github.com/DrunkenAlcoholic/Pasfetch/blob/main/img/Screenshot%20from%202023-04-16%2001-50-58.png "Pasfetch Fedora")
+![alt text](img/Screenshot_from_2023-04-16_01-50-58.png "Pasfetch")
 
 ## Installation
 install a nerd font for the icons.
@@ -26,7 +24,7 @@ $ fpc -Px86_64 -CpCOREAVX2 -CfAVX2 -OpCOREAVX2 -O3 -Mobjfpc -CX -B -XXs -v pasfe
 
 or run the included bash script to compile and cleanup
 ```bash
-$ ./cleanndup.sh
+$ ./build.sh
 ```
 if you get an error on "ld" not found, install "binutils" package for your distribution
 
@@ -45,3 +43,5 @@ Either call the program by using pasfetch in a shell or add to your .bashrc
 ```bash
 $ pasfetch
 ```
+
+

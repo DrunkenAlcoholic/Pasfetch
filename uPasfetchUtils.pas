@@ -16,6 +16,7 @@ function GetOS(): string;
 function GetKernel(): string;
 function GetShell(): String;
 
+  
 implementation
 
 //Compare OS out put and write logo
@@ -27,7 +28,7 @@ begin
   else if pos('Solus', strOS) <> 0 then
    // Write the Solus logo
    WriteSolus
-  else if pos('Arch', strOS) <> 0 then
+  else if ((pos('Arch', strOS) <> 0) or (pos('RebornOS', strOS) <> 0)) then
    // Write the arch logo
    WriteArch
   else if pos('Fedora', strOS) <> 0 then
@@ -178,7 +179,7 @@ begin
     slOS.LoadFromFile('/etc/os-release');
     try
       for i := 0 to pred(slOS.Count) do
-        begin		     // "NAME=" <- Pos 1                "PRETTY_NAME=" <- pos 8
+        begin		          //"NAME=" <- Pos 1                "PRETTY_NAME=" <- pos 8
           if ((pos('NAME=', slOS.Strings[i]) = 1) or (pos('NAME=', slOS.Strings[i]) = 8))  then
             begin
               strOS := slOS.Strings[i];
