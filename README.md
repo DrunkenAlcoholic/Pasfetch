@@ -5,10 +5,10 @@ A simple fetch program writen in pascal, a work in progress but initial upload t
 
 ## Screenshot
 ### Arch Linux
-![alt text](img/Screenshot_from_2023-04-16_01-25-00.png "Pasfetch")
+![alt text](https://github.com/DrunkenAlcoholic/Pasfetch/blob/main/img/Screenshot%20from%202023-04-16%2001-25-00.png "Arch"))
 
 ### Fedora
-![alt text](img/Screenshot_from_2023-04-16_01-50-58.png "Pasfetch")
+![alt text](https://github.com/DrunkenAlcoholic/Pasfetch/blob/main/img/Screenshot%20from%202023-04-16%2001-50-58.png "Fedora")
 
 ## Installation
 install a nerd font for the icons.
