@@ -22,8 +22,11 @@ begin
   //Clear the screen
   ClrScr;
 
-  //Check what operating system and write logo
-  WriteOSLogo(info.OS);
+  //Check for Parameter(debugging ascii) otherwise print OS
+  if paramCount() > 0 then
+   WriteOSLogo(paramStr(1)) //e.g pasfetch Popos
+  else
+	WriteOSLogo(info.OS);
 
   //Write System information
   (* 

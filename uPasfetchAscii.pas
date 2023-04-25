@@ -80,15 +80,15 @@ end;
 procedure WriteSolus;
 begin
 
-  writeLn(tsDefault,fcLightBlue,' 				   ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
-  writeLn(tsDefault,fcLightBlue,'     /|			   ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
-  writeLn(tsDefault,fcLightBlue,'    / |\\		   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
-  writeLn(tsDefault,fcLightBlue,'   /  | \\ _		   ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
-  writeLn(tsDefault,fcLightBlue,'  /___|__\\_\\	   ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
-  writeLn(tsDefault,fcLightBlue,' \\         /	   ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
-  writeLn(tsDefault,fcLightBlue,'  \`-------´	       '); // Call WriteBoxes to fill this area with coloured boxes
+  writeLn(tsDefault,fcLightBlue,'               ');
+  writeLn(tsDefault,fcLightBlue,'     /|		',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcLightBlue,'    / |\\       ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
+  writeLn(tsDefault,fcLightBlue,'   /  | \\ _	',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
+  writeLn(tsDefault,fcLightBlue,'  /___|__\\_\\	',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
+  writeLn(tsDefault,fcLightBlue,' \\         /	',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
+  writeLn(tsDefault,fcLightBlue,'  \`-------´	',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
   
-  WriteBoxes(26,7,'▄'); //26 spaces across, 7th line down, and block/icon string '▄'
+  WriteBoxes(26,8,'▄'); //26 spaces across, 8th line down, and block/icon string '▄'
 
 end;
 
@@ -113,15 +113,15 @@ end;
 procedure WriteCrystal;
 begin
 
-  writeLn(tsDefault,fcMagenta,'           -//.     ');
-  writeLn(tsDefault,fcMagenta,'         -//.       ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
-  writeLn(tsDefault,fcMagenta,'       -//. .       ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
-  writeLn(tsDefault,fcMagenta,'     -//.  ''//-    ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
-  writeLn(tsDefault,fcMagenta,'    /+:      :+/    ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
-  writeLn(tsDefault,fcMagenta,'     .//''  .//.    ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
-  writeLn(tsDefault,fcMagenta,'       . .//.       ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
-  writeLn(tsDefault,fcMagenta,'       .//.         '); // Call WriteBoxes to fill this area with coloured boxes
-  writeLn(tsDefault,fcMagenta,'     .//.           '); 
+  writeLn(tsDefault,fcMagenta,'           -//.   ');
+  writeLn(tsDefault,fcMagenta,'         -//.     ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcMagenta,'       -//. .     ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
+  writeLn(tsDefault,fcMagenta,'     -//.  ''//-   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
+  writeLn(tsDefault,fcMagenta,'    /+:      :+/  ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
+  writeLn(tsDefault,fcMagenta,'     .//''  .//.   ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
+  writeLn(tsDefault,fcMagenta,'       . .//.     ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
+  writeLn(tsDefault,fcMagenta,'       .//.       '); // Call WriteBoxes to fill this area with coloured boxes
+  writeLn(tsDefault,fcMagenta,'     .//.         ');
   
   WriteBoxes(26,8,'▄'); //26 spaces across, 8th line down, and block/icon string '▄'
 
@@ -131,14 +131,14 @@ end;
 procedure WriteGeneric;
 begin
 
-  writeLn(tsDefault,fcWhite,'       .---.	       ');
-  writeLn(tsDefault,fcWhite,'      /     \	   ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
-  writeLn(tsDefault,fcWhite,'      \.@-@./	   ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
-  writeLn(tsDefault,fcWhite,'      /`\_/`\	   ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
-  writeLn(tsDefault,fcWhite,'     //  _  \\	   ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
-  writeLn(tsDefault,fcWhite,'    | \     )|_	   ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
-  writeLn(tsDefault,fcWhite,'   /`\_`>  <_/ \	   ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
-  writeLn(tsDefault,fcWhite,'   \__/''---''\__/  '); // Call WriteBoxes to fill this area with coloured boxes
+  writeLn(tsDefault,fcWhite,'       .---.	  ');
+  writeLn(tsDefault,fcWhite,'      /     \	  ',fcLightRed,    ' ',fcWhite,tsBold, info.OS);       // OS
+  writeLn(tsDefault,fcWhite,'      \.@-@./	  ',fcLightGreen,  ' ',fcWhite,tsBold, info.HostName); // HOST
+  writeLn(tsDefault,fcWhite,'      /`\_/`\	  ',fcYellow,      ' ',fcWhite,tsBold, info.Kernel);   // KERNEL
+  writeLn(tsDefault,fcWhite,'     //  _  \\    ',fcLightBlue,   ' ',fcWhite,tsBold, info.Shell);    // SHELL
+  writeLn(tsDefault,fcWhite,'    | \     )|_   ',fcLightMagenta,' ',fcWhite,tsBold, info.Uptime);   // UPTIME
+  writeLn(tsDefault,fcWhite,'   /`\_`>  <_/ \  ',fcLightCyan,   ' ',fcWhite,tsBold, info.Memory);   // MEMORY
+  writeLn(tsDefault,fcWhite,'   \__/''---''\__/ '); // Call WriteBoxes to fill this area with coloured boxes
   
   WriteBoxes(26,8,'▄'); //26 spaces across, 8th line down, and block/icon string '▄'
 
