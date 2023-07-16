@@ -8,6 +8,7 @@ uses
 Classes, SysUtils, uPasfetchAscii, Dos;
 
 // Public functions for Pasfetch
+function CountDirectories(const Directory: string): Integer;
 procedure WriteOSLogo(strOS: string);
 function GetHostName(): string;
 function GetRamUsage(): string;
@@ -15,6 +16,7 @@ function GetUptime(): string;
 function GetOS(): string;
 function GetKernel(): string;
 function GetShell(): String;
+function GetPkgs(): Integer;
 
   
 implementation
@@ -23,20 +25,26 @@ implementation
 procedure WriteOSLogo(strOS: string);
 begin
   if pos('Pop', strOS) <> 0 then
-    // Write the popos logo
+    // Write the Popos logo
     WritePopOS
   else if pos('Solus', strOS) <> 0 then
    // Write the Solus logo
    WriteSolus
-  else if ((pos('Arch', strOS) <> 0) or (pos('RebornOS', strOS) <> 0)) then
-   // Write the arch logo
+  else if ((pos('Arch', strOS) <> 0) or (pos('RebornOS', strOS) <> 0) or (pos('CachyOS', strOS) <> 0)) then
+   // Write the Arch logo
    WriteArch
+  else if pos('ArcoLinux', strOS) <> 0 then
+   // Write the Arcolinux logo
+   WriteArco 
   else if pos('Fedora', strOS) <> 0 then
-   // Write the fedora logo
+   // Write the Fedora logo
    WriteFedora
   else if pos('Crystal', strOS) <> 0 then
-  // Write the fedora logo
+  // Write the Crystal OS logo
    WriteCrystal
+  else if pos('Mint', strOS) <> 0 then
+  // Write the Linux Mint OS logo
+   WriteLinuxMint
   else
     WriteGeneric;
 end;
@@ -166,36 +174,66 @@ begin
   Result := strTemp[High(strTemp)];
 end;
 
+// Used for counting packages, count directory in a dirtectory
+function CountDirectories(const Directory: string): Integer;
+var
+  Rec: TSearchRec;
+  Found: Integer;
+begin
+  Found := 0;
+  if SysUtils.FindFirst(IncludeTrailingPathDelimiter(Directory) + '*', faDirectory, Rec) = 0 then
+    try
+      repeat
+        if (Rec.Name <> '.') and (Rec.Name <> '..') then
+          Inc(Found);
+      until SysUtils.FindNext(Rec) <> 0;
+    finally
+      SysUtils.FindClose(Rec);
+    end;
+  Result := Found;
+end;
+
+// Get Pkgs
+function GetPkgs(): Integer;
+begin
+	Result:= 0;
+	if DirectoryExists('/var/lib/pacman/local') then
+	   Result:= pred(CountDirectories('/var/lib/pacman/local'))
+	else 
+	 if DirectoryExists('/var/lib/eopkg/package') then
+	  Result:= pred(CountDirectories('/var/lib/eopkg/package'))
+end;
+
 // Get OS
 function GetOS(): string;
+const
+  OsReleasePath = '/etc/os-release';
 var 
-  strOS: string;
-  slOS: TStringList;
+  DistributionName: string;
+  OsReleaseFile: TStringList;
   i: integer;
 begin
   Result := 'Error';
-  slOS := TStringList.Create;
+  OsReleaseFile := TStringList.Create;
   try
-    slOS.LoadFromFile('/etc/os-release');
+    OsReleaseFile.LoadFromFile(OsReleasePath);
     try
-      for i := 0 to pred(slOS.Count) do
-        begin		          //"NAME=" <- Pos 1                "PRETTY_NAME=" <- pos 8
-          if ((pos('NAME=', slOS.Strings[i]) = 1) or (pos('NAME=', slOS.Strings[i]) = 8))  then
+      for i := 0 to pred(OsReleaseFile.Count) do
+		begin		          
+          if ((pos('NAME=', OsReleaseFile.Strings[i]) = 1) or (pos('NAME=', OsReleaseFile.Strings[i]) = 8))  then
             begin
-              strOS := slOS.Strings[i];
-              Delete(strOS, 1, pos('=', strOS));
-              //you could gtfo now because we have what we came for, but if you want FANCY_NAME then continue..
-              //Break; 
+             DistributionName := OsReleaseFile.Strings[i];
+             Delete(DistributionName, 1, pos('=', DistributionName));
             end;
         end;
     finally
-      slOS.Free;
+      OsReleaseFile.Free;
     end;
   except
    on E: EInOutError do
     writeln('File handling error occurred. Details: ', E.Message);
   end;
-  Result := StripChars(strOS, '"');
+  Result := StripChars(DistributionName, '"');
 end;
 
 end.

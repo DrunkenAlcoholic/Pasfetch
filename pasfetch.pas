@@ -15,6 +15,7 @@ begin
       HostName := GetHostName;
       Kernel := GetKernel;
       Shell  := GetShell;
+      Pkgs	 := GetPkgs;
       Uptime := GetUptime;
       Memory := GetRamUsage;
     end;
